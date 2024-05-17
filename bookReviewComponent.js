@@ -62,9 +62,11 @@ template.shadowRoot.innerHTML =  `<style>
 </button>
 `;
 
-class BookReview{
+class BookReview extends HTMLElement{
+    inner = this.attachShadow({mode: "closed"})
     connectedCallback(){
-        
+        this.innerHTML;
     }
+
 } 
 customElements.define("book-preview", BookReview);
