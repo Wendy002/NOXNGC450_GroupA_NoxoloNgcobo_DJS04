@@ -61,3 +61,6 @@ template.shadowRoot.innerHTML =  `<style>
     </div>
 </button>
 `;
+
+class BookReview{} 
+customElements.define("book-preview", BookReview);
