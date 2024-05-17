@@ -178,7 +178,11 @@ template.innerHTML = /*set template with book preview html*/ `<style>
 </dialog>`;
 
 class BookPreview extends HTMLElement{
-    inner = this.attachShadow({mode: "open"})
+    constructor(){
+        super();
+        inner = this.attachShadow({mode: "open"})
+    }
+    
     connectedCallback(){
         this.inner.appendChild(template.content.cloneNode(true)); 
     }
