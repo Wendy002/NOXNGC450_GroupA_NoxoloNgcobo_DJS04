@@ -65,8 +65,7 @@ template.shadowRoot.innerHTML =  `<style>
 class BookPreview extends HTMLElement{
     inner = this.attachShadow({mode: "closed"})
     connectedCallback(){
-        this.inner.appendChild(template.content); 
+        this.inner.appendChild(template.content.cloneNode(true)); 
     }
-
 } 
 customElements.define("book-preview", BookPreview);
