@@ -62,5 +62,9 @@ template.shadowRoot.innerHTML =  `<style>
 </button>
 `;
 
-class BookReview{} 
+class BookReview{
+    connectedCallback(){
+        
+    }
+} 
 customElements.define("book-preview", BookReview);
