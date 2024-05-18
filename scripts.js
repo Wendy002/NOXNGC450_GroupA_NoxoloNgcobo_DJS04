@@ -67,8 +67,8 @@ document.querySelector('[data-header-settings]').addEventListener('click', () =>
     document.querySelector('[data-settings-overlay]').open = true 
 })
 
-document.querySelector('[data-list-close]').addEventListener('click', () => {
-    document.querySelector('[data-list-active]').open = false
+bookPreviewElement.shadowRoot.querySelector('[data-list-close]').addEventListener('click', () => {
+    bookPreviewElement.shadowRoot.querySelector('[data-list-active]').open = false              // change content dynamically
 })
 
 document.querySelector('[data-settings-form]').addEventListener('submit', (event) => {
@@ -142,8 +142,7 @@ document.querySelector('[data-list-button]').addEventListener('click', () => {
     page += 1
 })
 
-// create new object
-const bookPreview = new BookPreview()
+
 //-------------------------------------------Abstracted code-------------------------------------------------------
 
 function createBookPreview(fragment, slicedObject){            //CreateBookPreview function
@@ -216,16 +215,16 @@ document.querySelector('[data-list-items]').addEventListener('click', (event) =>
         }
     }
 
-    const myBookPreview = new BookPreview();
-    document.getElementsByTagName('template').appendChild(myBookPreview);
+    
+
     
     
     if (active) {
-        myBookPreview.getActiveElement('[data-list-active]').open = true
-        myBookPreview.getActiveElement('[data-list-blur]').src = active.image
-        myBookPreview.getActiveElement('[data-list-image]').src = active.image
-        myBookPreview.getActiveElement('[data-list-title]').innerText = active.title
-        myBookPreview.getActiveElement('[data-list-subtitle]').innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`
-        myBookPreview.getActiveElement('[data-list-description]').innerText = active.description
+        bookPreviewElement.shadowRoot.querySelector('[data-list-active]').open = true
+        bookPreviewElement.shadowRoot.querySelector('[data-list-blur]').src = active.image
+        bookPreviewElement.shadowRoot.querySelector('[data-list-image]').src = active.image
+        bookPreviewElement.shadowRoot.querySelector('[data-list-title]').innerText = active.title
+        bookPreviewElement.shadowRoot.querySelector('[data-list-subtitle]').innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`
+        bookPreviewElement.shadowRoot.querySelector('[data-list-description]').innerText = active.description
     }
 })
