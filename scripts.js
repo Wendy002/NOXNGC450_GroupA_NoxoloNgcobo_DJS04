@@ -1,5 +1,9 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
-import { BookPreview } from './book-preview.js';
+import  './book-preview.js';
+
+//get a reference to the book-review custom element
+const bookPreviewElement =  document.querySelector('book-preview');
+
 
 let page = 1;
 let matches = books
@@ -73,7 +77,7 @@ document.querySelector('[data-settings-form]').addEventListener('submit', (event
     const { theme } = Object.fromEntries(formData)
 
     if (theme === 'night') {
-        changeTheme('night');
+        changeTheme('night');`                          `       `       `
     } else {
        changeTheme('day');
     }
@@ -137,6 +141,9 @@ document.querySelector('[data-list-button]').addEventListener('click', () => {
     createBookPreview(fragment,fragmentSlicedObject)
     page += 1
 })
+
+// create new object
+const bookPreview = new BookPreview()
 //-------------------------------------------Abstracted code-------------------------------------------------------
 
 function createBookPreview(fragment, slicedObject){            //CreateBookPreview function
@@ -208,13 +215,17 @@ document.querySelector('[data-list-items]').addEventListener('click', (event) =>
             active = result
         }
     }
+
+    const myBookPreview = new BookPreview();
+    document.getElementsByTagName('template').appendChild(myBookPreview);
+    
     
     if (active) {
-        document.querySelector('[data-list-active]').open = true
-        document.querySelector('[data-list-blur]').src = active.image
-        document.querySelector('[data-list-image]').src = active.image
-        document.querySelector('[data-list-title]').innerText = active.title
-        document.querySelector('[data-list-subtitle]').innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`
-        document.querySelector('[data-list-description]').innerText = active.description
+        myBookPreview.getActiveElement('[data-list-active]').open = true
+        myBookPreview.getActiveElement('[data-list-blur]').src = active.image
+        myBookPreview.getActiveElement('[data-list-image]').src = active.image
+        myBookPreview.getActiveElement('[data-list-title]').innerText = active.title
+        myBookPreview.getActiveElement('[data-list-subtitle]').innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`
+        myBookPreview.getActiveElement('[data-list-description]').innerText = active.description
     }
 })
