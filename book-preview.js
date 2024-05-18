@@ -1,5 +1,6 @@
 const template = document.createElement('template');  // create template
-template.innerHTML = /*set template with book preview html*/ `<style>    
+/*set template with book preview html*/
+template.innerHTML =  `<style>    
 .overlay {
     position: fixed;
     bottom: 0;
@@ -178,13 +179,19 @@ template.innerHTML = /*set template with book preview html*/ `<style>
 </dialog>`;
 
 class BookPreview extends HTMLElement{
+    
+    
     constructor(){
         super();
-        inner = this.attachShadow({mode: "open"})
+        this.attachShadow({mode: "open"}) //attach a shadow root to the custom element - shadowDOM
+        
     }
+     connectedCallback(){
+        
+        this.shadowRoot.appendChild(template.content.cloneNode(true)); // need to clone template  to show more book previews
+     }
+
+
     
-    connectedCallback(){
-        this.inner.appendChild(template.content.cloneNode(true)); 
-    }
 } 
 customElements.define("book-preview", BookPreview);
