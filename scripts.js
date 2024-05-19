@@ -1,12 +1,8 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from './data.js'
-import  './book-preview.js';
-
-//get a reference to the book-review custom element
-const bookPreviewElement =  document.querySelector('book-preview');
-
 
 let page = 1;
 let matches = books
+
 const starting = document.createDocumentFragment()
 const startingSlicedObject =  matches.slice(0, BOOKS_PER_PAGE)
 createBookPreview(starting, startingSlicedObject)       //use the createBookPreview 
@@ -16,8 +12,9 @@ const firstGenreElement = document.createElement('option')
 firstGenreElement.value = 'any'
 firstGenreElement.innerText = 'All Genres'
 genreHtml.appendChild(firstGenreElement)
+
 //use createObject entries function
-createObjectEntries(genres,genreHtml);
+createObjectEntries(genres, genreHtml);
 
 
 document.querySelector('[data-search-genres]').appendChild(genreHtml)
@@ -67,8 +64,8 @@ document.querySelector('[data-header-settings]').addEventListener('click', () =>
     document.querySelector('[data-settings-overlay]').open = true 
 })
 
-bookPreviewElement.shadowRoot.querySelector('[data-list-close]').addEventListener('click', () => {
-    bookPreviewElement.shadowRoot.querySelector('[data-list-active]').open = false              // change content dynamically
+document.querySelector('[data-list-close]').addEventListener('click', () => {
+    document.querySelector('[data-list-active]').open = false
 })
 
 document.querySelector('[data-settings-form]').addEventListener('submit', (event) => {
@@ -77,7 +74,7 @@ document.querySelector('[data-settings-form]').addEventListener('submit', (event
     const { theme } = Object.fromEntries(formData)
 
     if (theme === 'night') {
-        changeTheme('night');`                          `       `       `
+        changeTheme('night');
     } else {
        changeTheme('day');
     }
@@ -108,7 +105,6 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
         }
     }
 
-    page = 1;
     matches = result
 
     if (result.length < 1) {
@@ -123,7 +119,7 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
     // replace the for loop  for newItems , use the createBookPreview
     createBookPreview(newItems, resultSlicedObject);
 
-    document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
+    document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 0
 
     document.querySelector('[data-list-button]').innerHTML = `
         <span>Show more</span>
@@ -141,8 +137,6 @@ document.querySelector('[data-list-button]').addEventListener('click', () => {
     createBookPreview(fragment,fragmentSlicedObject)
     page += 1
 })
-
-
 //-------------------------------------------Abstracted code-------------------------------------------------------
 
 function createBookPreview(fragment, slicedObject){            //CreateBookPreview function
@@ -214,17 +208,13 @@ document.querySelector('[data-list-items]').addEventListener('click', (event) =>
             active = result
         }
     }
-
-    
-
-    
     
     if (active) {
-        bookPreviewElement.shadowRoot.querySelector('[data-list-active]').open = true
-        bookPreviewElement.shadowRoot.querySelector('[data-list-blur]').src = active.image
-        bookPreviewElement.shadowRoot.querySelector('[data-list-image]').src = active.image
-        bookPreviewElement.shadowRoot.querySelector('[data-list-title]').innerText = active.title
-        bookPreviewElement.shadowRoot.querySelector('[data-list-subtitle]').innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`
-        bookPreviewElement.shadowRoot.querySelector('[data-list-description]').innerText = active.description
+        document.querySelector('[data-list-active]').open = true
+        document.querySelector('[data-list-blur]').src = active.image
+        document.querySelector('[data-list-image]').src = active.image
+        document.querySelector('[data-list-title]').innerText = active.title
+        document.querySelector('[data-list-subtitle]').innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`
+        document.querySelector('[data-list-description]').innerText = active.description
     }
 })
