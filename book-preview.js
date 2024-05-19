@@ -80,6 +80,9 @@ class BookPreview extends HTMLElement{
         this.shadowRoot.innerHTML = ''; // clears template before adding another everytime you you update your custom template
         this.shadowRoot.appendChild(template.content.cloneNode(true)); // need to clone template  to show more book previews
      }
+     static get observedAttributes(){  // watches the changes in the variables in the custom template
+        return ['author', 'id','image', 'title']
+     }
     
 } 
 customElements.define("book-preview", BookPreview);
