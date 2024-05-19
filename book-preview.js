@@ -77,7 +77,7 @@ class BookPreview extends HTMLElement{
         
     }
      connectedCallback(){
-
+        this.shadowRoot.innerHTML = ''; // clears template before adding another everytime you you update your custom template
         this.shadowRoot.appendChild(template.content.cloneNode(true)); // need to clone template  to show more book previews
      }
     
