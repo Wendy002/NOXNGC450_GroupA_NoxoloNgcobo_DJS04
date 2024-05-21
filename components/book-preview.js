@@ -1,4 +1,4 @@
-import { books, authors, genres, BOOKS_PER_PAGE } from './data.js';
+
 class BookPreview extends HTMLElement{
     
     
@@ -94,7 +94,7 @@ class BookPreview extends HTMLElement{
             <img class="preview__image" src="${image}" alt="${title}" />
             <div class="preview__info">
               <h3 class="preview__title">${title}</h3>
-              <div class="preview__author">${authors[author]}</div>
+              <div class="preview__author">${author}</div>
             </div>
           </button>
         `;

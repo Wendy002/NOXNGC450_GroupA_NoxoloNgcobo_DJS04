@@ -193,7 +193,7 @@ function filterBooks(books, filters) {
 function createBookPreview(fragment, slicedObject){            //CreateBookPreview function
     for (const { author, id, image, title } of slicedObject) {              
         const element = document.createElement('book-preview');
-        element.setAttribute('author', author);
+        element.setAttribute('author', authors[author]);
         element.setAttribute('id', id);
         element.setAttribute('image', image);
         element.setAttribute('title', title);
