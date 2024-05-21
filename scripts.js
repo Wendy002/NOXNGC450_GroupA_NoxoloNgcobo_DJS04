@@ -228,7 +228,7 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
 
     matches = filterBooks(books,filters) // use filterBooks function withh given form data filter
     page = 1;
-    if (result.length < 1) {
+    if (matches.length < 1) {
         document.querySelector('[data-list-message]').classList.add('list__message_show')
     } else {
         document.querySelector('[data-list-message]').classList.remove('list__message_show')
@@ -236,7 +236,7 @@ document.querySelector('[data-search-form]').addEventListener('submit', (event) 
 
     document.querySelector('[data-list-items]').innerHTML = ''
     const newItems = document.createDocumentFragment();
-    const resultSlicedObject = result.slice(0, BOOKS_PER_PAGE);
+    const resultSlicedObject = matches.slice(0, BOOKS_PER_PAGE);
     // replace the for loop  for newItems , use the createBookPreview
     createBookPreview(newItems, resultSlicedObject);
     //call updateshowmore function 
